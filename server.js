@@ -24,6 +24,7 @@ io.on("connection", function (socket) {
   });
   socket.on("disconnect", () => {
     delete users[socket.id];
+    socket.broadcast.emit("users-changed", Object.values(users));
   });
 
   // socket.on("exituser", function (username) {

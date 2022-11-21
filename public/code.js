@@ -124,10 +124,3 @@
       messageContainer.scrollHeight - messageContainer.clientHeight;
   }
 })();
-// function renderConnected() {
-//   let list = document.querySelector(".chat-screen .connected");
-//   let people = document.createElement("div");
-//   people.setAttribute("class", "person");
-//   console.log(username);
-//   // people.innerText=username
-// }
