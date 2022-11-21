@@ -1,20 +1,62 @@
-(function () {
+(async function () {
+  users = [];
   const app = document.querySelector(".app");
   const socket = io();
+
   let uname;
+
+  function initialisation() {
+    socket.on("users-changed", (users) => {
+      renderUsers(users);
+    });
+  }
+
   app
     .querySelector(".join-screen #join-user")
-    .addEventListener("click", function () {
-      let username = app.querySelector(".join-screen #username").value;
-      if (username.length === 0) {
+    .addEventListener("click", async function () {
+      users = await fetchUsers();
+      initialisation();
+      renderUsers(users);
+      console.log(users);
+      let usernames = app.querySelector(".join-screen #username").value;
+      // let username = usernames;
+      console.log(usernames);
+      if (usernames === "") {
         return;
       }
-      socket.emit("newuser", username);
-      uname = username;
+      socket.emit("newuser", usernames);
+      uname = usernames;
       app.querySelector(".join-screen").classList.remove("active");
-      console.log(app);
+
       app.querySelector(".chat-screen").classList.add("active");
+      let header = document.querySelector(".chat-screen .header");
+      let logged = document.createElement("div");
+      header.append(logged);
+      logged.innerText = `Logged in as ${usernames}`;
+
+      async function fetchUsers() {
+        const res = await fetch("/users");
+        return await res.json();
+      }
     });
+  function renderUsers(users) {
+    console.log("labas", users);
+    users = users.filter((user) => user.id !== socket.id);
+
+    let list = document.querySelector(".chat-screen .connected");
+
+    list.innerHTML = "";
+    const persons = users.map((user) => {
+      const person = document.createElement("div");
+      person.innerText = user.name;
+      console.log(user.name);
+      person.dataset.id = user.id;
+      console.log(user.id);
+
+      return person;
+    });
+    list.append(...persons);
+  }
 
   app
     .querySelector(".chat-screen #send-message")
@@ -71,13 +113,21 @@
       `;
       messageContainer.appendChild(el);
     } else if (type === "update") {
+      let list = document.querySelector(".chat-screen .connected");
       let el = document.createElement("div");
       el.setAttribute("class", "update");
       el.innerText = message;
-      messageContainer.appendChild(el);
+      list.appendChild(el);
     }
     //scroll chat to end
     messageContainer.scrollTop =
       messageContainer.scrollHeight - messageContainer.clientHeight;
   }
 })();
+// function renderConnected() {
+//   let list = document.querySelector(".chat-screen .connected");
+//   let people = document.createElement("div");
+//   people.setAttribute("class", "person");
+//   console.log(username);
+//   // people.innerText=username
+// }
