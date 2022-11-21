@@ -75,6 +75,9 @@ body {
   align-items: center;
   padding: 0px 20px;
 }
+.chat-screen .header div {
+  text-transform: capitalize;
+}
 .chat-screen .header .logo {
   font-size: 18px;
   color: #eee;
@@ -89,38 +92,44 @@ body {
   cursor: pointer;
   outline: none;
 }
+.read {
+  display: flex;
+  flex-direction: row;
+  width: 600px;
+  height: calc(100% - 100px);
+}
 
-.chat-screen .messages {
-  width: 100%;
+.chat-screen .read .messages {
+  width: 400px;
   /* height: calc(100% - 100px); */
   background: #f5f5f5;
   overflow: auto;
 }
-.chat-screen .messages .message {
+.chat-screen .read .messages .message {
   display: flex;
   padding: 10px;
 }
-.chat-screen .messages .message > div {
+.chat-screen .read .messages .message > div {
   max-width: 80%;
   background: rgb(203, 73, 73);
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
   padding: 10px;
 }
-.chat-screen .messages .message .my-message {
+.chat-screen .read .messages .message .my-message {
   justify-content: flex-end;
 }
-.chat-screen .messages .message .other-message {
+.chat-screen .read .messages .message .other-message {
   justify-content: flex-start;
 }
-.chat-screen .messages .message .name {
+.chat-screen .read .messages .message .name {
   font-size: 13px;
   color: #555;
   margin-bottom: 5px;
 }
-.chat-screen .messages .message .text {
+.chat-screen .read .messages .message .text {
   word-wrap: break-word;
 }
-.chat-screen .messages .update {
+.chat-screen .read .messages .update {
   text-align: center;
   padding: 10px;
   font-style: italic;
@@ -149,8 +158,13 @@ body {
 }
 .chat-screen .connected {
   width: 200px;
-  height: 50%;
-  background: #555;
+  height: 100%;
+  /* background: #555; */
+  color: #372020;
+}
+.chat-screen .connected div {
+  padding: 15px 30px;
+  text-transform: capitalize;
 }
 .person {
   color: red;
