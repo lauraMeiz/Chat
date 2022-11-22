@@ -111,14 +111,31 @@ body {
 }
 .chat-screen .read .messages .message > div {
   max-width: 80%;
-  background: rgb(203, 73, 73);
+  /* background: rgb(203, 73, 73); */
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
   padding: 10px;
 }
-.chat-screen .read .messages .message .my-message {
+.chat-screen .connected .has-new-notification {
+  background-color: rgb(255, 240, 249);
+  /* content: "❗";
+  display: inline-block; */
+}
+
+.chat-screen .read .messages .message.my-message {
   justify-content: flex-end;
 }
-.chat-screen .read .messages .message .other-message {
+.chat-screen .read .messages .message.my-message div {
+  background-color: rgb(197, 186, 171);
+  border-radius: 8px;
+  border-top-right-radius: 0;
+}
+.chat-screen .read .messages .message.other-message div {
+  background-color: rgb(134, 123, 108);
+  border-radius: 8px;
+  border-top-left-radius: 0;
+  color: #eee;
+}
+.chat-screen .read .messages .message.other-message {
   justify-content: flex-start;
 }
 .chat-screen .read .messages .message .name {
@@ -166,6 +183,20 @@ body {
   padding: 15px 30px;
   text-transform: capitalize;
 }
+.chat-screen .connected .active {
+  background-color: #372020;
+  color: #f5f5f5;
+}
+.chat-screen .connected div:hover {
+  background-color: #372020;
+  color: #f5f5f5;
+  cursor: pointer;
+}
+
 .person {
   color: red;
+}
+
+.hidden {
+  display: none;
 }

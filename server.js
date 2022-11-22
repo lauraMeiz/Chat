@@ -30,8 +30,17 @@ io.on("connection", function (socket) {
   // socket.on("exituser", function (username) {
   //   socket.broadcast.emit("update", username + " left the conversation");
   // });
-  socket.on("chat", function (message) {
-    socket.broadcast.emit("chat", message);
+  //bendram chatui
+  // socket.on("chat", function (message) {
+  //   socket.broadcast.emit("chat", message);
+  // });
+  //vienam konkreciam useriui
+
+  socket.on("chat-message", (message) => {
+    socket.to(message.recipientId).emit("chat-message", {
+      text: message.text,
+      senderId: socket.id,
+    });
   });
 });
 
