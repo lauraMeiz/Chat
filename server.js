@@ -18,8 +18,9 @@ io.on("connection", function (socket) {
   // console.log("connected", socket.id);
   socket.on("newuser", (user) => {
     user = { name: user };
+    console.log("kas cia", user.name);
     users[socket.id] = { ...user, id: socket.id };
-    console.log("connected-user", users);
+    console.log("connected-user", users, "------", users[socket.id].name);
     socket.broadcast.emit("users-changed", Object.values(users));
   });
   socket.on("disconnect", () => {
@@ -27,9 +28,9 @@ io.on("connection", function (socket) {
     socket.broadcast.emit("users-changed", Object.values(users));
   });
 
-  // socket.on("exituser", function (username) {
-  //   socket.broadcast.emit("update", username + " left the conversation");
-  // });
+  socket.on("exituser", function (username) {
+    socket.broadcast.emit("update", username + " left the conversation");
+  });
   //bendram chatui
   // socket.on("chat", function (message) {
   //   socket.broadcast.emit("chat", message);
@@ -37,10 +38,16 @@ io.on("connection", function (socket) {
   //vienam konkreciam useriui
 
   socket.on("chat-message", (message) => {
-    socket.to(message.recipientId).emit("chat-message", {
-      text: message.text,
-      senderId: socket.id,
-    });
+    console.log("kas", message);
+    socket.to(message.recipientId).emit(
+      "chat-message",
+
+      {
+        user: message.name,
+        text: message.text,
+        senderId: socket.id,
+      }
+    );
   });
 });
 

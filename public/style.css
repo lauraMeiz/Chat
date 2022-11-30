@@ -108,28 +108,34 @@ body {
 .chat-screen .read .messages .message {
   display: flex;
   padding: 10px;
+  background: rgb(231, 225, 225);
+  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
 }
-.chat-screen .read .messages .message > div {
+.chat-screen .read .messages .message div {
   max-width: 80%;
-  /* background: rgb(203, 73, 73); */
+  background: rgb(233, 227, 227);
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
   padding: 10px;
 }
 .chat-screen .connected .has-new-notification {
-  background-color: rgb(255, 240, 249);
-  /* content: "❗";
-  display: inline-block; */
+  background-color: rgb(164, 119, 146);
+}
+.chat-screen .connected .has-new-notification:after {
+  content: "New";
+  color: red;
+  margin-left: 10px;
+  display: inline-block;
 }
 
 .chat-screen .read .messages .message.my-message {
   justify-content: flex-end;
 }
-.chat-screen .read .messages .message.my-message div {
+.chat-screen .read .messages .message .my-message div {
   background-color: rgb(197, 186, 171);
   border-radius: 8px;
   border-top-right-radius: 0;
 }
-.chat-screen .read .messages .message.other-message div {
+.chat-screen .read .messages .message .other-message div {
   background-color: rgb(134, 123, 108);
   border-radius: 8px;
   border-top-left-radius: 0;
