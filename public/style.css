@@ -8,6 +8,7 @@ body {
   height: 100vh;
   display: flex;
   justify-content: center;
+  background-color: rgb(141, 119, 119);
 }
 .app {
   position: fixed;
@@ -17,7 +18,20 @@ body {
   background: #fff;
   border-left: 1px solid #eee;
   border-right: 1px solid #eee;
+  background-color: rgb(246, 242, 242);
 }
+@media (max-width: 375px) {
+  .app {
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .app,
+  .app > .screen.active {
+    max-width: 400px;
+  }
+}
+
 .app > .screen {
   display: none;
 }
@@ -34,6 +48,11 @@ body {
   transform: translate(-50%, -50%);
   width: 80%;
   max-width: 400px;
+  border: 3px solid rgb(199, 188, 188);
+  padding: 17px;
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 3px 3px #c8afaf;
 }
 .screen .form-input {
   width: 100%;
@@ -42,8 +61,8 @@ body {
 .screen h2 {
   margin-bottom: 20px;
   font-size: 30px;
-  color: #111;
-  border-bottom: 4px solid #555;
+  color: rgb(113, 88, 88);
+  /* border-bottom: 4px solid #555; */
   padding: 5px 0px;
   display: inline-block;
 }
@@ -51,24 +70,36 @@ body {
 .screen .form-input label {
   display: block;
   margin-bottom: 5px;
+  color: rgb(99, 91, 91);
 }
 .screen .form-input input {
   width: 100%;
   padding: 10px;
   border: 1px solid #555;
   font-size: 16px;
+  border-radius: 5px;
+  background-color: rgb(141, 119, 119);
+  color: #eee;
+  border: none;
+}
+.screen .form-input ::placeholder {
+  color: #eee;
 }
 .screen .form-input button {
   padding: 10px 20px;
-  background: rgb(150, 145, 145);
+  background: rgb(156, 138, 138);
   color: #eee;
   font-size: 16px;
   cursor: pointer;
   outline: none;
   border: none;
+  border-radius: 5px;
+}
+.screen .form-input button:hover {
+  background: rgb(141, 119, 119);
 }
 .chat-screen .header {
-  background: rgb(150, 145, 145);
+  background: rgb(117, 101, 101);
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -92,33 +123,59 @@ body {
   cursor: pointer;
   outline: none;
 }
+.chat-screen .header button:hover {
+  background: rgb(122, 117, 117);
+}
+.chat-screen .header .logged {
+  color: #eee;
+}
+
 .read {
   display: flex;
   flex-direction: row;
   width: 600px;
   height: calc(100% - 100px);
 }
+@media (max-width: 375px) {
+  .read {
+    width: 100%;
+  }
+}
+@media (max-width: 700px) {
+  .read,
+  .chat-screen .header {
+    width: 400px;
+  }
+}
 
 .chat-screen .read .messages {
   width: 400px;
-  /* height: calc(100% - 100px); */
+
   background: #f5f5f5;
   overflow: auto;
 }
+@media (max-width: 375px) {
+  .chat-screen .read .messages {
+    width: 100%;
+  }
+}
+@media (max-width: 500px) {
+  .chat-screen .read .messages {
+    max-width: 300px;
+  }
+}
+
 .chat-screen .read .messages .message {
   display: flex;
   padding: 10px;
   background: rgb(231, 225, 225);
   box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
+  word-break: break-all;
 }
-.chat-screen .read .messages .message div {
-  max-width: 80%;
-  background: rgb(233, 227, 227);
-  box-shadow: 0px 0px 20px 5px rgba(0, 0, 0, 0.05);
-  padding: 10px;
-}
+
 .chat-screen .connected .has-new-notification {
-  background-color: rgb(164, 119, 146);
+  background-color: rgb(199, 177, 179);
+  color: #eee;
 }
 .chat-screen .connected .has-new-notification:after {
   content: "New";
@@ -162,6 +219,11 @@ body {
   height: 50px;
   display: flex;
 }
+@media (max-width: 700px) {
+  .chat-screen .typebox {
+    width: 400px;
+  }
+}
 
 .chat-screen .typebox input {
   flex: 1;
@@ -183,18 +245,29 @@ body {
   width: 200px;
   height: 100%;
   /* background: #555; */
-  color: #372020;
+  color: #5c4747;
+}
+@media (max-width: 375px) {
+  .chat-screen .connected {
+    width: 150px;
+  }
+}
+@media (max-width: 500px) {
+  .chat-screen .connected {
+    width: 150px;
+  }
 }
 .chat-screen .connected div {
   padding: 15px 30px;
   text-transform: capitalize;
+  word-break: break-all;
 }
 .chat-screen .connected .active {
-  background-color: #372020;
+  background-color: #5c4747;
   color: #f5f5f5;
 }
 .chat-screen .connected div:hover {
-  background-color: #372020;
+  background-color: #5c4747;
   color: #f5f5f5;
   cursor: pointer;
 }
